@@ -1,15 +1,18 @@
+@import '~antd/dist/antd.css';
+
 .App {
-  text-align: center;
+  text-align: left;
+  width: 30%;
+  margin: auto;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 20vmin;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,4 +32,61 @@
   to {
     transform: rotate(360deg);
   }
+}
+ .component-search-input{
+  margin-top: 20px;
+}
+.component-job-results .left{
+  width: 80%;
+  float: left;
+}
+.component-job-results .right{
+  float: right;
+}
+.component-job-results .title{
+  font-weight: bold;
+  padding-bottom: 5px;
+  font-size: 15px;
+}
+hr {
+  clear:both;
+}
+.job-container{
+  margin: 20px 0;
+}
+.job-container .info{
+  margin: 20px 0 15px 0;
+}
+.job-container .availability{
+  margin-left: 13px;
+  padding: 3px 10px;
+  color: white;
+  border-radius: 15px 15px;
+  font-size: 11px;
+}
+
+.job-container .availability.green{
+  background-color: green;
+}
+
+.job-container .availability.orange{
+  background-color: orange;
+}
+
+.job-container .availability.blue{
+  background-color: rgb(0, 174, 255)
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 25px;
+}
+ul li{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px 15px;
+  font-size: 11px;
+  border: 1px solid grey;
+  margin-right: 5px;
 }
