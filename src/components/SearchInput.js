@@ -9,6 +9,21 @@ class SearchInput extends Component {
     this.props.textChange(event);
   };
 
+  onPressEnter = event => {
+    this.props.textChange(event.target.value);
+  }
+
+  onChange = (event) => {
+    if(event.target.value === '')
+      this.props.textChange(event.target.value);
+  }
+
+  componentDidMount(){
+    let searchButton = document.querySelector('.ant-input-search-button');
+    let getInputText = document.querySelector('.ant-input-search .ant-input-lg');
+    searchButton.addEventListener('click', () => this.handleChange(getInputText.value));
+  }
+
   render() {
     return (
       <div className="component-search-input">
@@ -17,8 +32,9 @@ class SearchInput extends Component {
           placeholder="Search by keywords (PHP, .NET)"
           enterButton="Search"
           size="large"
-          onChange={this.handleChange}
           addonAfter=""
+          onPressEnter={this.onPressEnter}
+          onChange={this.onChange}
           />
         </div>
       </div>

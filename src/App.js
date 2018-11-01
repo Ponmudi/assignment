@@ -9,36 +9,30 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredResults: filterJobs('')
+      filteredResults: filterJobs(''),
+      keywords: '',
+      sortBy: ''
     };
   }
 
-  handleSearchChange = event => {
+  handleSearchChange = searchKeyword => {
     this.setState({
-      filteredResults: filterJobs(event.target.value)
+      filteredResults: filterJobs(searchKeyword, null, this.state.sortBy),
+      keywords: searchKeyword
     });
   };
 
-  handleSortBy = selectedVal => {
-    let sortedResults;
-    if(selectedVal === 'lowtohigh')
-      sortedResults = this.state.filteredResults.sort(function(a, b){return a.salarymin - b.salarymin});
-    else 
-      sortedResults = this.state.filteredResults.sort(function(a, b){return b.salarymin - a.salarymin});
-    
+  handleSortBy = selectedSortBy => {
     this.setState({
-      filteredResults: sortedResults
+      filteredResults: filterJobs(this.state.keywords, null, selectedSortBy),
+      sortBy: selectedSortBy
     });
-
-    // this.setState({
-    //   filteredResults: filterJobs(event.target.value)
-    // });
   }
 
   render() {
     return (
       <div className="App">
-        <SearchInput textChange={this.handleSearchChange} />
+        <SearchInput textChange={this.handleSearchChange}  />
         <JobResults sortBy={this.handleSortBy} jobData={this.state.filteredResults} />
       </div>
     );

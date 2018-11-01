@@ -17,7 +17,8 @@ class JobResults extends Component {
         <div className="job-results-top">
           <div className="countResults">RESULTS ({this.props.jobData.length})</div>
           <div className="sortBy">Sort by 
-          <Select defaultValue="Relevance" style={{ width: 120 }} onChange={this.handleChange}>
+          <Select defaultValue="Relevance" style={{ width: 120 }} onChange={this.handleChange} >
+            <Option value="relevance">Relevance</Option>
             <Option value="lowtohigh">Price:low to high</Option>
             <Option value="hightolow">Price:high to low</Option>
           </Select>
