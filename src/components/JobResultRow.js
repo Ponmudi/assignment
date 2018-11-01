@@ -1,15 +1,13 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Divider } from 'antd';
-import { Icon } from 'antd';
+import { Divider, Icon } from 'antd';
 
-class JobResultsRow extends PureComponent {
+class JobResultsRow extends Component {
   render() {
     const {title, location, desciption, requiredSkills, salarymin, jobType} = this.props;
 
     const staticJobTypes = ['Full Time', 'Part Time', 'Hourly'];
     const chooseStyles = staticJobTypes.filter(style => style === jobType);
-    //console.log(chooseStyles[0]);
     let finalStyles = 'availability ';
       switch(chooseStyles[0]){
         case 'Full Time': 
@@ -28,8 +26,6 @@ class JobResultsRow extends PureComponent {
     let skills = requiredSkills.split(',');
 
     let finalSkills = skills.map((skill, index) => <li key={index}>{skill.trim()}</li> );
-    console.log(finalSkills);
-    
   
     return (
       <div className="job-container">
@@ -37,7 +33,7 @@ class JobResultsRow extends PureComponent {
             <div className="title">{title}<span className={finalStyles}>{jobType}</span></div>
             <div><Icon type="environment" theme="twoTone" twoToneColor="#52c41a" /> {location}</div>
             <p className="info">{desciption}</p>
-            <p><ul className="skills">{finalSkills}</ul></p>
+            <ul className="skills">{finalSkills}</ul>
         </div>
         <div className="right">${salarymin}</div>
         <Divider />

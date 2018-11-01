@@ -19,11 +19,27 @@ class App extends Component {
     });
   };
 
+  handleSortBy = selectedVal => {
+    let sortedResults;
+    if(selectedVal === 'lowtohigh')
+      sortedResults = this.state.filteredResults.sort(function(a, b){return a.salarymin - b.salarymin});
+    else 
+      sortedResults = this.state.filteredResults.sort(function(a, b){return b.salarymin - a.salarymin});
+    
+    this.setState({
+      filteredResults: sortedResults
+    });
+
+    // this.setState({
+    //   filteredResults: filterJobs(event.target.value)
+    // });
+  }
+
   render() {
     return (
       <div className="App">
         <SearchInput textChange={this.handleSearchChange} />
-        <JobResults jobData={this.state.filteredResults} />
+        <JobResults sortBy={this.handleSortBy} jobData={this.state.filteredResults} />
       </div>
     );
   }

@@ -1,12 +1,11 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Input } from 'antd';
 
 const Search = Input.Search;
 
-class SearchInput extends PureComponent {
+class SearchInput extends Component {
   handleChange = event => {
-    //console.log(event)
     this.props.textChange(event);
   };
 
@@ -19,6 +18,7 @@ class SearchInput extends PureComponent {
           enterButton="Search"
           size="large"
           onChange={this.handleChange}
+          addonAfter=""
           />
         </div>
       </div>
