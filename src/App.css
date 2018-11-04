@@ -1,54 +1,184 @@
 @import '~antd/dist/antd.css';
-
-.App {
-  text-align: left;
-  width: 30%;
-  margin: auto;
+/*** Header ***/
+.ant-layout-header{
+  background: #fff;
+  padding:0;
+  box-shadow: 0 2px 4px rgba(0,0,1,0.2);
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,1,0.2);
+}
+.ant-layout-header img.logo,.ant-layout-footer img.logo{
+  margin: 1% 7%;
+  float: left;
+  padding-top: 5px;
+}
+.headerNav{
+  float:right;
+  margin-right: 7%;
+}
+.ant-layout-header .ant-menu-horizontal{
+  border-bottom: 0;
+  margin-top: 10px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 20vmin;
+/*** Search ***/
+.component-search-input{
+  margin-top: -10px;
+  margin-bottom: 44px;
+}
+.component-search-input .ant-input-lg{
+  height: 55px;
+}
+.component-search-input .ant-btn-lg{
+  height: 55px;
+  padding: 0 40px;
+}
+.ant-input-search{
+  -webkit-box-shadow: 0 3px 5px #b2b2b2;
+  box-shadow: 0 3px 5px #b2b2b2;
+}
+/*** Left container ***/
+.leftContainer{
+  padding-right:30px;
+}
+.leftContainer .ant-divider-horizontal{
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+.ant-layout .ant-divider{
+  background: #ced9ee;
+}
+.leftContainer .workType{
+  padding-bottom: 10px;
+}
+.leftContainer label .clearFilter{
+    float: right;
+}
+.leftContainer .ant-select{
+  width: 100%;
+}
+.leftContainer .ant-input{
+  height: 42px;
+}
+.leftContainer .ant-select-selection-selected-value{
+  margin-top: 5px;
+}
+.ant-checkbox-checked .ant-checkbox-inner{
+  border-color: #56d48f;
+  background-color: #56d48f;
+} 
+.workType .ant-checkbox-wrapper:hover .ant-checkbox-inner, .workType .ant-checkbox:hover .ant-checkbox-inner, .workType .ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: #56d48f;
+}
+.leftContainer .ant-select-selection--single {
+  height: 42px;
+}
+.leftContainer .ant-select-selection--multiple {
+  min-height: 42px;
+}
+.leftContainer .ant-select-selection__placeholder{
+  margin-top: -5px;
+}
+.leftContainer .ant-slider .ant-slider-track{
+  background: #56d48f;
+}
+.leftContainer .ant-slider .ant-slider-handle{
+  border: solid 2px #56d48f;
+}
+.leftContainer .ant-slider .ant-slider-rail{
+  background-color: #dfe6f1;
+}
+.leftContainer .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open){
+  border-color: #56d48f;
+}
+.leftContainer .ant-checkbox-group-item{
+  display: block;
+}
+.leftContainer .ant-checkbox-group-item{
+  margin-bottom: 12px;
+}
+.container{
+  margin-bottom:10%;
 }
 
-.App-header {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*** Right container ***/
+.rightContainer{
+  padding-left:30px;
 }
-
-.App-link {
-  color: #61dafb;
+.rightContainer .ant-divider-horizontal{
+  margin-bottom: 25px;
+  margin-top: 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rightContainer .ant-layout .rightAdBlockOne{
+  background: #fff;
+  padding: 50px 0;
+  text-align: center;
+  margin-bottom: 10%;
+  box-shadow: 0 1px 4px rgba(0,0,1,0.06);
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,1,0.06);
 }
- .component-search-input{
+.rightContainer .ant-layout .rightAdBlockOne a{
+  display: block;
+  padding-top: 10px;
+}
+.ad-container{
+ margin: 20px 0;
+}
+.rightAdBlockList{
+  margin-bottom: 20px;
   margin-top: 20px;
+  clear: both
 }
+.ad-container .left{
+  width: 85%;
+  float: left;
+}
+.ad-container .right{
+  float: right;
+  width: 13%
+}
+.ad-container .title{
+  font-weight: bold;
+  padding-bottom: 5px;
+  font-size: 15px;
+}
+.ad-container .info{
+  margin: 5px 0 20px 0;
+  font-size: 12px; 
+}
+span.clearFilter{
+  float: right;
+}
+.middleContainer{
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,1,0.06);
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,1,0.06);
+}
+.leftSideBlock{
+  background: rgb(240,242,245);
+}
+
+
+.mainContainer{
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 2%;
+}
+
+/* Main container - job results  */
 .component-job-results .left{
   width: 80%;
   float: left;
 }
 .component-job-results{
-  border: 1px solid #ccc;
-  padding: 10px 20px;
-  margin-top: 35px;
+  padding: 10px 30px;
+  margin-top: 15px;
 }
 .job-results-top{
   margin: 10px 0 40px 0;
 }
-
+.job-results-top .noResults {
+  text-align: center;
+}
 .component-job-results .countResults{
   width: 49%;
   display: inline-block;
@@ -56,6 +186,12 @@
 }
 .component-job-results .sortBy{
   float: right;
+}
+.component-job-results .ant-select-selection--single{
+  height: 42px;
+}
+.component-job-results .ant-select-selection-selected-value {
+  margin-top: 5px;
 }
 
 .component-job-results .sortBy .ant-select{
@@ -65,22 +201,22 @@
   float: right;
 }
 .component-job-results .title{
-  font-weight: bold;
-  padding-bottom: 5px;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #3c495a;
 }
 
-.job-container:nth-last-of-type(1) .ant-divider {
+.component-job-results .job-container:nth-last-of-type(1) .ant-divider {
   height: 0;
 }
 
-.job-container{
+.component-job-results .job-container{
   margin: 20px 0;
 }
-.job-container .info{
+.component-job-results .job-container .info{
   margin: 20px 0 15px 0;
 }
-.job-container .availability{
+.component-job-results .job-container .availability{
   margin-left: 13px;
   padding: 3px 10px;
   color: white;
@@ -88,16 +224,16 @@
   font-size: 11px;
 }
 
-.job-container .availability.green{
-  background-color: #52c41a;
+.component-job-results .job-container .availability.green{
+  background-color: #56d48f;
 }
 
-.job-container .availability.orange{
-  background-color: orange;
+.component-job-results .job-container .availability.orange{
+  background-color: #ffc14a;
 }
 
-.job-container .availability.blue{
-  background-color: rgb(0, 174, 255)
+.component-job-results .job-container .availability.blue{
+  background-color: #4bd3ff;
 }
 
 ul.skills {
@@ -113,4 +249,87 @@ ul.skills li{
   border: 1px solid #ccc;
   margin-right: 5px;
   font-weight: bold;
+}
+
+/* Footer */
+.ant-layout-footer{
+  background: #324258;
+  color:#fff;
+  margin-top: 75px;
+}
+.footerNav{
+  text-align: left;
+}
+.footerNav ul{
+  padding:0;
+}
+.footerNav ul li{
+
+  list-style-type: none;
+  padding: 8px;
+  font-size: 12px;
+}
+.footerNav ul li.title{
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+.footerNav ul.socialIcons li.icons i{
+  padding-right: 40px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 414px) and (orientation: portrait){
+    .leftContainer {
+      padding-right: 0;
+    }
+    .rightContainer {
+      padding-left: 0;
+      margin-top: 30px;
+    }
+    .ant-row footerNav {
+      text-align: center;
+    }
+    .component-search-input{
+      margin-top: 30px;
+      margin-bottom: 44px;
+    }
+    .footerNav{
+      text-align: center;
+    }
+    .ant-layout-footer .ant-col-xs-24{
+      text-align: center;
+    }
+    .ant-layout-footer .ant-col-xs-24 img{
+      float: none;
+    }
+    .footerNav ul.socialIcons li.icons i.anticon-instagram {
+      padding-right: 0;
+    }
+    .component-job-results .left{
+      float: none;
+      width: 100%
+    }
+    .component-job-results .right{
+      float: none;
+    }
+    .component-job-results .countResults{
+      text-align: center;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .component-job-results .sortBy {
+      float: none;
+    }
+    .component-job-results .sortBy .ant-select{
+      margin-left: 0;
+      width: 100%;
+    }
+    .ant-layout-header{
+      text-align: center;
+    }
+    .ant-layout-header img.logo{
+      float: none;
+    }
+    .component-job-results .job-container .availability.blue {
+      display: inline-block;
+  }
 }

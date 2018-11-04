@@ -5,6 +5,7 @@ import { Input } from 'antd';
 const Search = Input.Search;
 
 class SearchInput extends Component {
+
   handleChange = event => {
     this.props.textChange(event);
   };
@@ -14,7 +15,7 @@ class SearchInput extends Component {
   }
 
   onChange = (event) => {
-    if(event.target.value === '')
+      if(event.target.value === '')
       this.props.textChange(event.target.value);
   }
 

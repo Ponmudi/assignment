@@ -36,7 +36,7 @@ class JobResultsRow extends Component {
     } = this.props;
 
     let skills = requiredSkills.split(",");
-    
+
     let finalSkills = skills.map((skill, index) => (
       <li key={index}>{skill.trim()}</li>
     ));
@@ -49,7 +49,7 @@ class JobResultsRow extends Component {
             <span className={this.finalstyles()}>{jobType}</span>
           </div>
           <div>
-            <Icon type="environment" theme="twoTone" twoToneColor="#52c41a" />{" "}
+            <Icon type="environment" theme="twoTone" twoToneColor="#56d48f" />{" "}
             {location}
           </div>
           <p className="info">{desciption}</p>
