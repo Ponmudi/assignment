@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   handleSearchChange = searchKeyword => {
-    console.log("search-->",searchKeyword)
       let keywordFilters = [...this.state.keywordFilters];
       if(keywordFilters.length > 0 || searchKeyword === ''){
         keywordFilters = [];
@@ -85,7 +84,6 @@ class App extends Component {
   }
 
   handleAvailabilityFilter = availability => {
-    console.log("event triggered",availability)
     let newAvailabilityFilters = [...this.state.availabilityFilters];
     
     if(newAvailabilityFilters.length > 0){
@@ -108,7 +106,6 @@ class App extends Component {
 }
 
 handleOnChangeRangeFilter = rangevalues => {
-  console.log("OnChange triggered",rangevalues)
   let newRangeFilters = [...this.state.rangeFilters];
   
   if(newRangeFilters.length > 0){
@@ -135,7 +132,6 @@ handleOnChangeRangeFilter = rangevalues => {
   }
 
   handleJobTypeFilter = selectedJobType => {
-      console.log(selectedJobType)
       let newJobTypeFilters = [...this.state.jobTypeFilters];
 
       if(newJobTypeFilters.length > 0){

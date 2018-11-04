@@ -4,8 +4,8 @@ import { Checkbox, Tooltip, Icon } from "antd";
 const CheckboxGroup = Checkbox.Group;
 
 const options = [
-  { label: 'Part-time(20hrs/wk)', value: 'Part Time' },
-  { label: 'Full-time(40hrs/wk)', value: 'Full Time' }
+  { label: 'Full-time(40hrs/wk)', value: 'Full Time' },
+  { label: 'Part-time(20hrs/wk)', value: 'Part Time' }
 ];
 
 export default class Availability extends Component {
