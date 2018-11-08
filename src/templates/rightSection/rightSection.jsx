@@ -18,19 +18,19 @@ const rightSection = () => {
 				<div className="tobJobList">
 					<div>
 						<div className="left">
-							<div className="title">Reactjs FrontEnd Engineer</div>
-							<p className="info">Full time role for front end development. should be able to develop cross browser application</p>
+							<div className="title">Senior Product Designer</div>
+							<p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						</div>
-						<div className="right">$2500</div>
+						<div className="right title">$60/hr</div>
 					</div>
 					<div>
 						<div className="left">
 							<div className="title">Senior Ruby on Rails Engineer</div>
-							<p className="info">Full time role for front end development. should be able to develop cross browser application</p>
+							<p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						</div>
-						<div className="right">$2500</div>
+						<div className="right title">$45/hr</div>
 					</div>
-					</div>
+				</div>
 				</div>
 			</div>
 			<div className='rightAdBlockList'>
@@ -38,20 +38,20 @@ const rightSection = () => {
 				<Divider />
 				<div className="ad-container">
 					<div className="viewedList">
-						<div>
+					<div>
 						<div className="left">
-							<div className="title">Senior Product Engineer</div>
-							<p className="info">Full time role for front end development. should be able to develop cross browser application</p>
+							<div className="title">Senior Product Designer</div>
+							<p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						</div>
-						<div className="right">$4500</div>
-						</div>
-						<div>
+						<div className="right title">$60/hr</div>
+					</div>
+					<div>
 						<div className="left">
 							<div className="title">Senior Ruby on Rails Engineer</div>
-							<p className="info">Full time role for front end development. should be able to develop cross browser application</p>
+							<p className="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						</div>
-						<div className="right">$3500</div>
-						</div>
+						<div className="right title">$45/hr</div>
+					</div>
 					</div>
 				</div>
 			</div>

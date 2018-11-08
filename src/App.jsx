@@ -109,6 +109,7 @@ class App extends Component {
 }
 
 handleOnChangeRangeFilter = rangevalues => {
+  console.log('range triggered', rangevalues)
   let newRangeFilters = [...this.state.rangeFilters];
   
   if(newRangeFilters.length > 0){
@@ -134,9 +135,9 @@ handleOnChangeRangeFilter = rangevalues => {
   });
 }
 
-  handleAfterChangeRangeFilter = rangevalues => {
-   this.handleOnChangeRangeFilter(rangevalues)
-  }
+  // handleAfterChangeRangeFilter = rangevalues => {
+  //  this.handleOnChangeRangeFilter(rangevalues)
+  // }
 
   handleJobTypeFilter = selectedJobType => {
       let newJobTypeFilters = [...this.state.jobTypeFilters];
@@ -172,8 +173,7 @@ handleOnChangeRangeFilter = rangevalues => {
                 jobTypeFilter={this.handleJobTypeFilter} 
                 experienceFilter={this.handleExperienceFilter} 
                 availabilityFilter={this.handleAvailabilityFilter} 
-                rangeFilter1={this.handleOnChangeRangeFilter}  
-                rangeFilter2={this.handleAfterChangeRangeFilter}
+                rangeFilter={this.handleOnChangeRangeFilter}  
               />
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12} className='middleContainer' ><Main sortBy={this.handleSortBy} jobData={this.state.filteredResults} /></Col>

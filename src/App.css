@@ -102,6 +102,10 @@
 .leftContainer .ant-checkbox-group-item{
   margin-bottom: 12px;
 }
+.clearFilter{
+  cursor: pointer;
+  color: #79899d;
+}
 .container{
   margin-bottom:10%;
 }

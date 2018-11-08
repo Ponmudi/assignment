@@ -30,7 +30,7 @@ export default class Availability extends Component {
       this.setState({checkedItems: newCheckedItems})
 
       this.props.availabilityEvent([]);
-		}
+    } 
   }
 
   render() {

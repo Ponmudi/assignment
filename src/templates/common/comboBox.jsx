@@ -27,12 +27,11 @@ export default class ComboBox extends Component{
 	}
 	render(){
 		const {mode, title, optionProps, placeholderProps}=this.props;
-		//const classTitle = title.replace(' ','').toLowerCase();
 		return(
 		<div className="container">
 			<p>
 				<b>{title + " "}{title === "Job type"?<Tooltip title={title}><Icon type="info-circle" style={{ fontSize: '18px' }} theme="outlined" /> </Tooltip>:""}</b>
-				<span className='clearFilter' id={title} onClick={this.handleComboBoxReset}>Clear</span>
+				<span className="clearFilter" id={title} onClick={this.handleComboBoxReset}>Clear</span>
 			</p>
 			
 				{mode === "multiple"?

@@ -55,7 +55,7 @@ class JobResultsRow extends Component {
           <p className="info">{desciption}</p>
           <ul className="skills">{finalSkills}</ul>
         </div>
-        <div className="right">${salarymin}</div>
+        <div className="right title">${Math.round((salarymin/160))}/hr</div>
         <Divider />
       </div>
     );
