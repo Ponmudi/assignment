@@ -6,8 +6,12 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
   let availabilityFilters = checkedValueFilters || [];
   let jobTypeFilters = jobType || [];
   let minMaxRange = range || [];
-  // console.log("Keywords-->",searchFilters)
-  // console.log("Skills-->",keySkillsFilters)
+  console.log("Keywords-->",searchFilters)
+  console.log("Skills-->",keySkillsFilters)
+  console.log("jobType-->",jobTypeFilters)
+  console.log("availability-->",availabilityFilters)
+  console.log("range-->",minMaxRange)
+
   let filterStatusCount = 0;
   if(searchFilters.length > 0){
     filterStatusCount = filterStatusCount + 1;
@@ -25,9 +29,13 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
     filterStatusCount = filterStatusCount + 1;
   }
 
-  let finalFilters = [...searchFilters, ...keySkillsFilters, ...availabilityFilters, ...jobTypeFilters, ...minMaxRange];
+  let finalFilters = [...keySkillsFilters, ...availabilityFilters, ...jobTypeFilters, ...minMaxRange];
 
-  //console.log("Before duplicates-->",finalFilters)
+  if(searchFilters.length > 0){
+    finalFilters = [...finalFilters, ...searchFilters]
+  }
+
+  console.log("Before duplicates-->",finalFilters)
   
   let duplicates = 0;
   for ( var i = 0; i < finalFilters.length; i++){
@@ -37,14 +45,34 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
       }
     }
   }
-  //console.log("Filter Status Count-->",filterStatusCount)
+
+  console.log("Filter Status Count-->",filterStatusCount)
   if(duplicates === 1 && filterStatusCount > 1){
-    finalFilters = finalFilters.reduce(function(acc, el, i, arr) {
-      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
-    }, []);
+
+    if(filterStatusCount === 2){
+      finalFilters = finalFilters.reduce(function(acc, el, i, arr) {
+        if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
+      }, []);
+    }
+
+    if(filterStatusCount > 2){
+      let sortedArr = [];
+      sortedArr = finalFilters.sort(function(a, b) {
+        return a - b
+      });
+      
+      var  count = {};
+      sortedArr.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+
+      let filteredId = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
+      filteredId = Number(filteredId);
+      finalFilters = [];
+      finalFilters.push(filteredId)
+    }
+  
   }
 
-  //console.log("Final ids-->",finalFilters)
+  console.log("Final ids-->",finalFilters)
   let finalJobList = jobList;
   if(finalFilters.length > 0){
     finalJobList = jobList.filter(jobs => finalFilters.some(finalVal => jobs.id === finalVal))
@@ -57,7 +85,7 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
       finalJobList = finalJobList.sort(function(a, b){return b.salarymin - a.salarymin});
   }
   
-  // if(keywordFilters  || finalFilters.length === 0){
+  // if(keywordFilters === -1){
   //   finalJobList = [];
   // }
   

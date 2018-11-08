@@ -46,8 +46,11 @@ class App extends Component {
             }
           }
         })
-      }
-
+      } 
+      
+      // if(keywordFilters.length === 0 && searchKeyword !== '')
+      //   keywordFilters = -1;
+    
     this.setState({
       filteredResults: filterJobs(keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
       keywordFilters: keywordFilters
@@ -119,6 +122,10 @@ handleOnChangeRangeFilter = rangevalues => {
           }
       }
     })
+    newRangeFilters = newRangeFilters.reduce(function(acc, el, i, arr) {
+      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
+    }, []);
+
   }
   
   this.setState({

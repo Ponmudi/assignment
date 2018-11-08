@@ -18,23 +18,32 @@ export default class ComboBox extends Component{
 	      <Option key={key} value={val}>{val}</Option>
 	    ));
   	}
-	renderSelectModal=(mode, optionVal, placeholderProps) => {
-		return(
-			<Select mode={mode} placeholder={placeholderProps}  onChange={this.handleChange}>
-		      	{this.renderOptions(optionVal)}
-		    </Select>
-	    )
+	
+	handleComboBoxReset(e){
+		const comboClear=document.querySelectorAll('.ant-select-selection__clear');
+		for(let i=0;i<comboClear.length;i++){
+			comboClear[i].click()
+		}
 	}
 	render(){
 		const {mode, title, optionProps, placeholderProps}=this.props;
-		
+		//const classTitle = title.replace(' ','').toLowerCase();
 		return(
 		<div className="container">
 			<p>
 				<b>{title + " "}{title === "Job type"?<Tooltip title={title}><Icon type="info-circle" style={{ fontSize: '18px' }} theme="outlined" /> </Tooltip>:""}</b>
-				<span className='clearFilter'>Clear</span>
+				<span className='clearFilter' id={title} onClick={this.handleComboBoxReset}>Clear</span>
 			</p>
-			{this.renderSelectModal(mode, optionProps, placeholderProps)}
+			
+				{mode === "multiple"?
+				<Select mode={mode} allowClear placeholder={placeholderProps} onChange={this.handleChange}>
+		      	{this.renderOptions(optionProps)}
+		    	</Select>
+		    	:
+			    <Select mode={mode}  allowClear placeholder={placeholderProps}  onChange={this.handleChange}>
+			      	{this.renderOptions(optionProps)}
+			    </Select>
+		}
 			
   		</div>
 		);

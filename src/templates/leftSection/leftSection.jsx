@@ -5,19 +5,36 @@ import ComboBox from '../common/comboBox.jsx';
 import SliderComponent from './sliderComponent.jsx';
 
 export default class LeftSection extends Component{
+
+	constructor(props){
+		super(props)
+		this.clearAllinputChildCall=this.clearAllinputChildCall.bind(this)
+		this.textInput = null;
+
+		this.setClearAllComboRef = element => {
+			this.clearAllCombo = element;
+		};
+		this.setClearAllCheckBoxRef = element => {
+			this.clearAllAvailability = element;
+		};
+	}
+	clearAllinputChildCall(){
+		this.clearAllCombo.handleComboBoxReset();
+		this.clearAllAvailability.handleResetAvailability();
+	}
 	render(){
 		const jobtypeProps=['Reactjs FrontEnd Engineer','Front End Engineer','FrontEnd consultant','React Engineer', 'Java Engineer', 'Full stack Engineer', 'Data Engineer', 'DB Admin'];
 		const skillsProps = ["npm","react","webpack","html","js","css","java", "spring", "kafka", "nginx", "scala", "hadoop", "spark", "oracle", "mysql"];
-		const experienceProps=['Reactjs FrontEnd Engineer','Front End Engineer','FrontEnd consultant','React Engineer', 'Java Engineer', 'Full stack Engineer', 'Data Engineer', 'DB Admin'];
+		const experienceProps=[];
 		const languageProps=['English','Spanish','France','Chinese','Korean']
 
 		return(
 			<Layout>
-				<p><b>FILTERS</b> <span className='clearFilter'>Clear all filters</span></p>
+				<p><b>FILTERS</b> <span className='clearFilter' onClick={this.clearAllinputChildCall}>Clear all filters</span></p>
 				<Divider />
-				<ComboBox skillsEvent={this.props.skillsFilter} mode="multiple" optionProps={skillsProps} title="Skills" placeholderProps="Select your skills" />
-				<Availability availabilityEvent={this.props.availabilityFilter} />
-				<ComboBox jobTypeEvent={this.props.jobTypeFilter} mode="multiple" optionProps={jobtypeProps} title="Job type" placeholderProps="Select a job type" />
+				<ComboBox skillsEvent={this.props.skillsFilter} mode="multiple" optionProps={skillsProps} title="Skills" placeholderProps="Select your skills" ref={this.setClearAllComboRef} />
+				<Availability availabilityEvent={this.props.availabilityFilter} ref={this.setClearAllCheckBoxRef} />
+				<ComboBox jobTypeEvent={this.props.jobTypeFilter} mode="multiple" optionProps={jobtypeProps} title="Job type" placeholderProps="Select a job type" ref={this.setClearAllComboRef}  />
 				<SliderComponent rangeEvent1={this.props.rangeFilter1} rangeEvent2={this.props.rangeFilter2}/>
 				<ComboBox experienceEvent={this.props.experienceFilter} mode="multiple" optionProps={experienceProps} title="Experience" placeholderProps="Select your experience level" />
 				<div className="container">

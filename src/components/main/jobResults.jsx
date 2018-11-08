@@ -22,8 +22,8 @@ class JobResults extends Component {
                 <div className="sortBy">Sort by 
                 <Select defaultValue="Relevance" style={{ width: 160 }} onChange={this.handleChange} >
                   <Option value="relevance">Relevance</Option>
-                  <Option value="lowtohigh">Price-Low to High</Option>
-                  <Option value="hightolow">Price-High to Low</Option>
+                  <Option value="lowtohigh">Lowest Price</Option>
+                  <Option value="hightolow">Highest Price</Option>
                 </Select>
               </div>
             </Fragment>
