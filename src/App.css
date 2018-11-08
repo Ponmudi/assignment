@@ -65,6 +65,9 @@
 .leftContainer .ant-select-selection-selected-value{
   margin-top: 5px;
 }
+.leftContainer .workType label{
+  margin-bottom: 10px;
+}
 .ant-checkbox-checked .ant-checkbox-inner{
   border-color: #56d48f;
   background-color: #56d48f;
@@ -287,6 +290,22 @@ ul.skills li{
 }
 .footerNav ul.socialIcons li.icons i{
   padding-right: 40px;
+}
+.Pagination{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 25px;
+}
+.Pagination .ant-pagination-prev .ant-pagination-item-link{
+    width: 35px;
+    left: 0;
+    position: absolute;
+}
+.Pagination .ant-pagination-next .ant-pagination-item-link{
+  width: 35px;
+  right: 0;
+  position: absolute;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 414px) and (orientation: portrait){

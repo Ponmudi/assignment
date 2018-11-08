@@ -1,37 +1,61 @@
 import React, { Component } from "react";
 import { Checkbox, Tooltip, Icon } from "antd";
 
-const CheckboxGroup = Checkbox.Group;
-
-const options = [
-  { label: 'Full-time(40hrs/wk)', value: 'Full Time' },
-  { label: 'Part-time(20hrs/wk)', value: 'Part Time' }
-];
-
 export default class Availability extends Component {
 
-  state = {
-    checkedItems: []
-  };
+  constructor(props){
+		super(props);
+		this.state = {
+        checkedItems: new Map(),
+        checkedAvail: []
+  		};
+	}
 
-  onChange = (checkedValues) => {
-   console.log(checkedValues)
-   this.props.availabilityEvent(checkedValues)
-   this.setState({checkedItems: checkedValues})
+  handleOnChange = (e) => {
+      const item = e.target.name;
+      const isChecked = e.target.checked;
+      let newcheckedAvail = [...this.state.checkedAvail];
+      let ftime = "Full Time";
+      let ptime = "Part Time";
+      if(isChecked) {
+				this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+        newcheckedAvail.push(item)
+      }else if(!isChecked) {
+        this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+        newcheckedAvail.splice(newcheckedAvail.indexOf(item, 1))
+        if(!newcheckedAvail || newcheckedAvail.length === 0 ){
+          newcheckedAvail = [];
+        }
+      }
+
+      let finalAvail = [];
+      if(newcheckedAvail.length > 0){
+        for(let i=0; i< newcheckedAvail.length; i++){
+          if(newcheckedAvail[i] === 'fulltime'){
+            finalAvail.push(ftime)
+          }else{
+            finalAvail.push(ptime)
+          }
+        }
+      }
+
+      this.setState({checkedAvail: newcheckedAvail})
+      //console.log(finalAvail)
+      this.props.availabilityEvent(finalAvail)
   }
-
   handleResetAvailability = () => {
-    let newCheckedItems = [...this.state.checkedItems]
     const elements = document.querySelectorAll('.ant-checkbox-checked input');
-		for (let i=0;i<elements.length;i++){
-			elements[i].parentElement.setAttribute("class","ant-checkbox");
-      elements[i].checked=false;
-      newCheckedItems = []; 
-      this.setState({checkedItems: newCheckedItems})
-
-      this.props.availabilityEvent([]);
-    } 
+    for (let i=0;i<elements.length;i++){
+      elements[i].parentElement.setAttribute("class","ant-checkbox");
+      const elemName=elements[i].getAttribute('name');
+      this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(elemName, false) }));
+    }
+    this.setState({
+      checkedAvail: []
+    })
+    this.props.availabilityEvent([])
   }
+
 
   render() {
     return (
@@ -50,7 +74,9 @@ export default class Availability extends Component {
           <span className="clearFilter" onClick={this.handleResetAvailability}>Clear</span>
         </p>
         <div className="workType">
-        <CheckboxGroup options={options} defaultValue={this.state.checkedItems} onChange={this.onChange} />
+        <div><Checkbox name="hourly"  disabled className='availability_box'  onChange={this.handleOnChange}>Hourly</Checkbox></div>
+		    <div><Checkbox name="fulltime" className='availability_box' checked={this.state.checkedItems.get("fulltime")} onChange={this.handleOnChange}>Full-Time(40hrs/wk)</Checkbox></div>
+        <div><Checkbox name="parttime" className='availability_box' checked={this.state.checkedItems.get("parttime")} onChange={this.handleOnChange}>Part-Time(20hrs/wk)</Checkbox></div>
         </div>
       </div>
     );

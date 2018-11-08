@@ -61,18 +61,36 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
         return a - b
       });
       
-      var  count = {};
-      sortedArr.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+      //create Obj with duplicates count
+      var  objWithDuplicates = {};
+      sortedArr.forEach(function(i) { objWithDuplicates[i] = (objWithDuplicates[i]||0) + 1;});
 
-      let filteredId = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
+      let filteredId = Object.keys(objWithDuplicates).reduce((a, b) => objWithDuplicates[a] > objWithDuplicates[b] ? a : b);
+      //Find Max count of identical values which is a key of the above object
       filteredId = Number(filteredId);
+
       finalFilters = [];
-      finalFilters.push(filteredId)
+
+      //Get the corresponding value of the above key(filteredId)
+      let matchValue;
+      for(let i in objWithDuplicates){
+        if(Number(i) === filteredId){
+          matchValue = objWithDuplicates[i]
+        }
+      }
+
+      //Get the corresponding key of the above value(filteredId)
+      for(let j in objWithDuplicates){
+        if(matchValue === objWithDuplicates[j]){
+          finalFilters.push(Number(j))
+        }
+      }
     }
   
   }
 
   console.log("Final ids-->",finalFilters)
+
   let finalJobList = jobList;
   if(finalFilters.length > 0){
     finalJobList = jobList.filter(jobs => finalFilters.some(finalVal => jobs.id === finalVal))

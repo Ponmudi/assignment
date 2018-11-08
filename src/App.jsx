@@ -9,7 +9,7 @@ import filterJobs from "./components/main/filterJobs.jsx";
 import jobList from './resources/jobs.json';
 
 import './App.css';
-import { Layout,Row,Col } from 'antd';
+import { Layout,Row,Col,Pagination } from 'antd';
 
 
 class App extends Component {
@@ -70,16 +70,18 @@ class App extends Component {
       if(newSkillsFilters.length > 0){
         newSkillsFilters = [];
       }
+      console.log("NewSkillsFilters before--->",newSkillsFilters)
       if(selectedSkills.length > 0){
         jobList.forEach((jobs) => {
           for(let i = 0; i < selectedSkills.length; i++){
             if(jobs.requiredSkills.includes(selectedSkills[i])){
+                if(newSkillsFilters.includes(jobs.id) === false)
                 newSkillsFilters.push(jobs.id)
             }
           }
         })
       }
-      
+      console.log("NewSkillsFilters after--->",newSkillsFilters)
     this.setState({
       filteredResults: filterJobs(this.state.keywordFilters, newSkillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
       skillsFilters: newSkillsFilters
@@ -87,6 +89,7 @@ class App extends Component {
   }
 
   handleAvailabilityFilter = availability => {
+    console.log("Availability clear filter--->", availability)
     let newAvailabilityFilters = [...this.state.availabilityFilters];
     
     if(newAvailabilityFilters.length > 0){
@@ -96,6 +99,7 @@ class App extends Component {
       jobList.forEach((jobs) => {
         for(let i = 0; i < availability.length; i++){
           if(jobs.jobType.includes(availability[i])){
+            if(newAvailabilityFilters.includes(jobs.id) === false)
             newAvailabilityFilters.push(jobs.id)
           }
         }
@@ -176,8 +180,13 @@ handleOnChangeRangeFilter = rangevalues => {
                 rangeFilter={this.handleOnChangeRangeFilter}  
               />
             </Col>
-            <Col xs={24} sm={24} md={12} lg={12} xl={12} className='middleContainer' ><Main sortBy={this.handleSortBy} jobData={this.state.filteredResults} /></Col>
-            <Col xs={24} sm={24} md={6} lg={6} xl={6} className='rightContainer' ><RightSection /></Col>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} className='middleContainer' >
+              <Main sortBy={this.handleSortBy} jobData={this.state.filteredResults} />
+              <div className="Pagination"><Pagination pageSize={5} defaultCurrent={1} total={this.state.filteredResults.length} /></div>
+            </Col>
+            <Col xs={24} sm={24} md={6} lg={6} xl={6} className='rightContainer' >
+              <RightSection />
+            </Col>
          </Row>
       </Layout>
       <Footer />

@@ -8,8 +8,6 @@ export default class LeftSection extends Component{
 
 	constructor(props){
 		super(props)
-		this.clearAllFilters=this.clearAllFilters.bind(this)
-
 		this.setClearAllComboRef = element => {
 			this.clearAllCombo = element;
 		};
@@ -19,10 +17,9 @@ export default class LeftSection extends Component{
 		this.setClearAllSlider = element => {
 			this.clearAllSlider = element;
 		};
-
 		//this.clearAllSlider = React.createRef();
 	}
-	clearAllFilters(){
+	clearAllFilters = () => {
 		this.clearAllCombo.handleComboBoxReset();
 		this.clearAllAvailability.handleResetAvailability();
 		this.clearAllSlider.handleResetSlider();

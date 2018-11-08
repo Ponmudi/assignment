@@ -34,6 +34,7 @@ class JobResults extends Component {
         {this.props.jobData.map(jobData => (
           <JobResultRow key={jobData.id} {...jobData} />
         ))}
+        
       </div>
     );
   }

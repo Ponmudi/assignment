@@ -19,12 +19,21 @@ export default class ComboBox extends Component{
 	    ));
   	}
 	
-	handleComboBoxReset(e){
+	handleComboBoxReset = (e) => {
 		const comboClear=document.querySelectorAll('.ant-select-selection__clear');
 		for(let i=0;i<comboClear.length;i++){
 			comboClear[i].click()
 		}
+		//this.props.skillsEvent([])
+		if(this.props.title === 'Job type')
+			this.props.jobTypeEvent([])
+		if(this.props.title === 'Skills')
+			this.props.skillsEvent([])
+		if(this.props.title === 'Experience')
+			this.props.experienceEvent([])
 	}
+
+
 	render(){
 		const {mode, title, optionProps, placeholderProps}=this.props;
 		return(
