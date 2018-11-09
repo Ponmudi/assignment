@@ -128,7 +128,7 @@ handleOnChangeRangeFilter = rangevalues => {
   if(rangevalues.length > 0){
     jobList.forEach((jobs) => {
       for(let i = 0; i < rangevalues.length; i++){
-          if(jobs.salarymin > rangevalues[0] && jobs.salarymin < rangevalues[1]){
+          if(jobs.salarymin > rangevalues[0] && jobs.salarymax < rangevalues[1]){
             newRangeFilters.push(jobs.id)
           }
       }
@@ -185,7 +185,7 @@ handleOnChangeRangeFilter = rangevalues => {
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12} className='middleContainer' >
               <Main sortBy={this.handleSortBy} jobData={this.state.filteredResults} />
-              <div className="Pagination"><Pagination pageSize={5} defaultCurrent={1} total={this.state.filteredResults.length} /></div>
+              <div className="Pagination"><Pagination pageSize={3} defaultCurrent={1} total={this.state.filteredResults.length} /></div>
             </Col>
             <Col xs={24} sm={24} md={6} lg={6} xl={6} className='rightContainer' >
               <RightSection />

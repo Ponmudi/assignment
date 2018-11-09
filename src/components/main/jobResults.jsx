@@ -1,12 +1,42 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-
-import JobResultRow from "./jobResultRow.jsx";
+//import JobResultRow from "./jobResultRow.jsx";
 import { Select } from 'antd';
+import { List, Icon } from 'antd';
 
 const Option = Select.Option;
 
+const IconText = ({ type, text }) => (
+  <span>
+    <Icon type="environment" theme="twoTone" twoToneColor="#56d48f" />
+    {text}
+  </span>
+);
+
+
 class JobResults extends Component {
+
+  finalstyles() {
+    const staticJobTypes = ["Full Time", "Part Time", "Hourly"];
+    const chooseStyles = staticJobTypes.filter(
+      style => style === this.props.jobType
+    );
+    let finalStyles = "availability ";
+    switch (chooseStyles[0]) {
+      case "Full Time":
+        finalStyles += "blue";
+        break;
+      case "Part Time":
+        finalStyles += "green";
+        break;
+      case "Hourly":
+        finalStyles += "orange";
+        break;
+      default:
+        finalStyles += "blue";
+    }
+    return finalStyles;
+  }
 
   handleChange = (value) => {
     this.props.sortBy(value)
@@ -32,9 +62,40 @@ class JobResults extends Component {
           }
           
         </div>
-        {this.props.jobData.map(jobData => (
-          <JobResultRow key={jobData.id} {...jobData} />
-        ))}
+        <List
+          itemLayout="vertical"
+          size="large"
+          pagination={{
+            onChange: (page) => {
+              console.log(page);
+            },
+            pageSize: 5,
+          }}
+          dataSource={this.props.jobData}
+          renderItem={item => (
+            <List.Item
+              key={item.title}
+              extra={<b>${Math.round((item.salarymin/160))}/hr</b>}
+            >
+              <List.Item.Meta
+                title={item.title}
+                description={<span className={this.finalstyles()}>{item.jobType}</span>}
+              />
+              <div className="location">
+              {[<IconText key={Math.random()} type="environment" theme="twoTone" text={item.location} twoToneColor="#56d48f" />]}
+              </div>
+              <p className="info">{item.desciption}</p>
+              <ul className="skills">
+              {
+                item.requiredSkills.split(",").map((skill, index) => {
+                return (
+                  <li key={index}>{skill}</li>
+                );})
+              }
+              </ul>
+            </List.Item>
+          )}
+        />
 
       </div>
     );

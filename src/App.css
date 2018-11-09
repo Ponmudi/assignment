@@ -63,7 +63,7 @@
   height: 42px;
 }
 .leftContainer .ant-select-selection-selected-value{
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 .leftContainer .workType label{
   margin-bottom: 10px;
@@ -195,7 +195,7 @@ span.clearFilter{
   margin-top: 15px;
 }
 .job-results-top{
-  margin: 10px 0 40px 0;
+  margin: 10px 0 35px 0;
 }
 .job-results-top .noResults {
   text-align: center;
@@ -204,15 +204,17 @@ span.clearFilter{
   width: 49%;
   display: inline-block;
   font-weight: bold;
+  height: 32px;
+  line-height: 32px;
 }
 .component-job-results .sortBy{
   float: right;
 }
 .component-job-results .ant-select-selection--single{
-  height: 42px;
+  height: 32px;
 }
 .component-job-results .ant-select-selection-selected-value {
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .component-job-results .sortBy .ant-select{
@@ -257,21 +259,6 @@ span.clearFilter{
   background-color: #4bd3ff;
 }
 
-ul.skills {
-  list-style-type: none;
-  padding-left: 0;
-  margin-bottom: 25px;
-}
-ul.skills li{
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 15px 15px;
-  font-size: 11px;
-  border: 1px solid #ccc;
-  margin-right: 5px;
-  font-weight: bold;
-}
-
 /* Footer */
 .ant-layout-footer{
   background: #324258;
@@ -305,15 +292,17 @@ ul.skills li{
   text-align: center;
   margin-top: 25px;
 }
-.Pagination .ant-pagination-prev .ant-pagination-item-link{
+.Pagination .ant-pagination-item-link{
     width: 35px;
-    left: 0;
+    height: 35px;
     position: absolute;
+    border-radius: 50%;
+}
+.Pagination .ant-pagination-prev .ant-pagination-item-link{
+  left: 0;
 }
 .Pagination .ant-pagination-next .ant-pagination-item-link{
-  width: 35px;
   right: 0;
-  position: absolute;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 414px) and (orientation: portrait){
@@ -371,4 +360,48 @@ ul.skills li{
     .component-job-results .job-container .availability.blue {
       display: inline-block;
   }
+}
+
+
+.ant-list-item .ant-list-item-meta-title{
+  float: left;
+}
+.ant-list-item .ant-list-item-meta{
+  margin-bottom: 0;
+}
+.ant-list-item .location{
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+.ant-list-item .anticon-environment{
+  margin-right: 3px;
+}
+.ant-list-item .availability{
+  margin-left: 13px;
+  padding: 3px 10px;
+  color: white;
+  border-radius: 15px 15px;
+  font-size: 11px;
+}
+.ant-list-item .availability.green{
+  background-color: #56d48f;
+}
+.ant-list-item .availability.orange{
+  background-color: #ffc14a;
+}
+.ant-list-item .availability.blue{
+  background-color: #4bd3ff;
+}
+.ant-list-item ul.skills {
+  list-style-type: none;
+  padding-left: 0;
+}
+.ant-list-item ul.skills li{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px 15px;
+  font-size: 11px;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+  font-weight: bold;
 }
