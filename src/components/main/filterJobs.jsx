@@ -46,13 +46,58 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
     }
   }
 
-  console.log("Filter Status Count-->",filterStatusCount)
-  if(duplicates === 1 && filterStatusCount > 1){
+  let noDatasFound = 0;
+  if( (duplicates === 0 && filterStatusCount > 1)){
+    noDatasFound = 1
+  }
+  
+  let resultDuplicates;
+  if(keySkillsFilters.length > 0 && availabilityFilters.length > 0 && minMaxRange.length > 0){
+    resultDuplicates = keySkillsFilters.filter(value => availabilityFilters.includes(value) && minMaxRange.includes(value));
 
+    if(resultDuplicates.length === 0){
+      noDatasFound = 1
+    }
+  }
+  if(keySkillsFilters.length > 0 && availabilityFilters.length > 0 && searchFilters.length > 0){
+    resultDuplicates = searchFilters.filter(value => availabilityFilters.includes(value) && keySkillsFilters.includes(value));
+
+    if(resultDuplicates.length === 0){
+      noDatasFound = 1
+    }
+  }
+
+  if(minMaxRange.length > 0 && availabilityFilters.length > 0 && searchFilters.length > 0){
+    resultDuplicates = searchFilters.filter(value => availabilityFilters.includes(value) && minMaxRange.includes(value));
+
+    if(resultDuplicates.length === 0){
+      noDatasFound = 1
+    }
+  }
+
+  if(keySkillsFilters.length > 0 && minMaxRange.length > 0 && availabilityFilters.length > 0 && searchFilters.length > 0){
+    resultDuplicates = searchFilters.filter(value => availabilityFilters.includes(value) && minMaxRange.includes(value) && keySkillsFilters.includes(value));
+    if(resultDuplicates.length === 0){
+      noDatasFound = 1
+    }
+  }
+
+  //console.log("Filter Status Count-->",filterStatusCount)
+  if(duplicates === 1 && filterStatusCount > 1){
+    //Find duplicate values in an array
     if(filterStatusCount === 2){
-      finalFilters = finalFilters.reduce(function(acc, el, i, arr) {
-        if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
-      }, []);
+      let duplicateFilters = [];
+      finalFilters.forEach(function(element, index) {
+          // Find if there is a duplicate or not
+          if (finalFilters.indexOf(element, index + 1) > -1) {
+            // Find if the element is already in the result array or not
+            if (duplicateFilters.indexOf(element) === -1) {
+              duplicateFilters.push(element);
+            }
+          }
+      });
+
+        finalFilters = duplicateFilters;
     }
 
     if(filterStatusCount > 2){
@@ -95,6 +140,7 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
   if(finalFilters.length > 0){
     finalJobList = jobList.filter(jobs => finalFilters.some(finalVal => jobs.id === finalVal))
   }
+  
 
   if(sortBy){
     if(sortBy === 'lowtohigh')
@@ -103,9 +149,9 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
       finalJobList = finalJobList.sort(function(a, b){return b.salarymin - a.salarymin});
   }
   
-  // if(keywordFilters === -1){
-  //   finalJobList = [];
-  // }
+  if(noDatasFound === 1){
+    finalJobList = [];
+  }
   
   return finalJobList;
 }

@@ -26,6 +26,12 @@ class App extends Component {
     };
   }
 
+  handleClearAll = () => {
+    this.setState({
+      filteredResults: filterJobs()
+    });
+  }
+
   handleSearchChange = searchKeyword => {
       let keywordFilters = [...this.state.keywordFilters];
       if(keywordFilters.length > 0 || searchKeyword === ''){
@@ -48,8 +54,8 @@ class App extends Component {
         })
       } 
       
-      // if(keywordFilters.length === 0 && searchKeyword !== '')
-      //   keywordFilters = -1;
+    // if(keywordFilters.length === 0 && searchKeyword !== '')
+    //   keywordFilters = -1;
     
     this.setState({
       filteredResults: filterJobs(keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
@@ -139,10 +145,6 @@ handleOnChangeRangeFilter = rangevalues => {
   });
 }
 
-  // handleAfterChangeRangeFilter = rangevalues => {
-  //  this.handleOnChangeRangeFilter(rangevalues)
-  // }
-
   handleJobTypeFilter = selectedJobType => {
       let newJobTypeFilters = [...this.state.jobTypeFilters];
 
@@ -177,7 +179,8 @@ handleOnChangeRangeFilter = rangevalues => {
                 jobTypeFilter={this.handleJobTypeFilter} 
                 experienceFilter={this.handleExperienceFilter} 
                 availabilityFilter={this.handleAvailabilityFilter} 
-                rangeFilter={this.handleOnChangeRangeFilter}  
+                rangeFilter={this.handleOnChangeRangeFilter} 
+                clearAllFilters={this.handleClearAll}
               />
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12} className='middleContainer' >

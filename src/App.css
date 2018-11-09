@@ -7,7 +7,7 @@
   -webkit-box-shadow: 0 2px 4px rgba(0,0,1,0.2);
 }
 .ant-layout-header img.logo,.ant-layout-footer img.logo{
-  margin: 1% 7%;
+  margin: 1% 12%;
   float: left;
   padding-top: 5px;
 }
@@ -16,7 +16,7 @@
 } 
 .headerNav{
   float:right;
-  margin-right: 7%;
+  margin-right: 12%;
 }
 .ant-layout-header .ant-menu-horizontal{
   border-bottom: 0;
@@ -99,11 +99,19 @@
 .leftContainer .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open){
   border-color: #56d48f;
 }
+.leftContainer .ant-input-number{
+  width: 60px;
+}
 .leftContainer .ant-checkbox-group-item{
   display: block;
 }
 .leftContainer .ant-checkbox-group-item{
   margin-bottom: 12px;
+}
+.leftContainer .ant-col-6:last-child::before {
+  content: '-';
+  position: absolute;
+  margin-top: 3px;
 }
 .clearFilter{
   cursor: pointer;
@@ -142,12 +150,12 @@
   clear: both
 }
 .ad-container .left{
-  width: 85%;
+  width: 77%;
   float: left;
 }
 .ad-container .right{
   float: right;
-  width: 13%
+  width: 18%
 }
 .ad-container .title{
   font-weight: bold;
@@ -172,8 +180,8 @@ span.clearFilter{
 
 
 .mainContainer{
-  margin-left: 7%;
-  margin-right: 7%;
+  margin-left: 12%;
+  margin-right: 12%;
   margin-top: 2%;
 }
 
@@ -269,8 +277,8 @@ ul.skills li{
   background: #324258;
   color:#fff;
   margin-top: 75px;
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 12%;
+  padding-right: 12%;
 }
 .footerNav{
   text-align: left;

@@ -29,8 +29,8 @@ export default class ComboBox extends Component{
 			this.props.jobTypeEvent([])
 		if(this.props.title === 'Skills')
 			this.props.skillsEvent([])
-		if(this.props.title === 'Experience')
-			this.props.experienceEvent([])
+		// if(this.props.title === 'Experience')
+		// 	this.props.experienceEvent([])
 	}
 
 

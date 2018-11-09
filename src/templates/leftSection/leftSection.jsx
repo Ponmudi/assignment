@@ -17,12 +17,13 @@ export default class LeftSection extends Component{
 		this.setClearAllSlider = element => {
 			this.clearAllSlider = element;
 		};
-		//this.clearAllSlider = React.createRef();
 	}
+
 	clearAllFilters = () => {
 		this.clearAllCombo.handleComboBoxReset();
 		this.clearAllAvailability.handleResetAvailability();
 		this.clearAllSlider.handleResetSlider();
+		this.props.clearAllFilters();
 	}
 	
 	render(){

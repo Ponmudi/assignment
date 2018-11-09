@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import JobResultRow from "./jobResultRow.jsx";
 import { Select } from 'antd';
+
 const Option = Select.Option;
 
 class JobResults extends Component {
@@ -27,14 +28,14 @@ class JobResults extends Component {
                 </Select>
               </div>
             </Fragment>
-            : <div className="noResults"><h4>Sorry...No match found</h4></div>
+            : <div className="noResults"><h4>SORRY...NO PROFILES FOUND</h4></div>
           }
           
         </div>
         {this.props.jobData.map(jobData => (
           <JobResultRow key={jobData.id} {...jobData} />
         ))}
-        
+
       </div>
     );
   }

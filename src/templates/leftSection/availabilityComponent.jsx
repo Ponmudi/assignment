@@ -22,10 +22,7 @@ export default class Availability extends Component {
         newcheckedAvail.push(item)
       }else if(!isChecked) {
         this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
-        newcheckedAvail.splice(newcheckedAvail.indexOf(item, 1))
-        if(!newcheckedAvail || newcheckedAvail.length === 0 ){
-          newcheckedAvail = [];
-        }
+        newcheckedAvail = newcheckedAvail.filter(val => val !== item)
       }
 
       let finalAvail = [];
@@ -38,9 +35,8 @@ export default class Availability extends Component {
           }
         }
       }
-
+      //console.log("newchecked avail--->",newcheckedAvail)
       this.setState({checkedAvail: newcheckedAvail})
-      //console.log(finalAvail)
       this.props.availabilityEvent(finalAvail)
   }
   handleResetAvailability = () => {
