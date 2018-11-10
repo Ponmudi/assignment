@@ -24,22 +24,18 @@ export default class ComboBox extends Component{
 		for(let i=0;i<comboClear.length;i++){
 			comboClear[i].click()
 		}
-		//this.props.skillsEvent([])
-		if(this.props.title === 'Job type')
-			this.props.jobTypeEvent([])
 		if(this.props.title === 'Skills')
 			this.props.skillsEvent([])
-		// if(this.props.title === 'Experience')
-		// 	this.props.experienceEvent([])
+		if(this.props.title === 'Job type')
+			this.props.jobTypeEvent([])
 	}
-
 
 	render(){
 		const {mode, title, optionProps, placeholderProps}=this.props;
 		return(
 		<div className="container">
 			<p>
-				<b>{title + " "}{title === "Job type"?<Tooltip title={title}><Icon type="info-circle" style={{ fontSize: '18px' }} theme="outlined" /> </Tooltip>:""}</b>
+				<b>{title + " "}{title === "Job type"?<Tooltip title={title}><Icon type="info-circle" style={{ fontSize: '18px' }} theme="outlined" /> </Tooltip> : ""}</b>
 				<span className="clearFilter" id={title} onClick={this.handleComboBoxReset}>Clear</span>
 			</p>
 			

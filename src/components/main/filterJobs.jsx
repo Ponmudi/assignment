@@ -6,150 +6,53 @@ export default function filterJobs(keywordFilters, skillsFilters, checkedValueFi
   let availabilityFilters = checkedValueFilters || [];
   let jobTypeFilters = jobType || [];
   let minMaxRange = range || [];
-  console.log("Keywords-->",searchFilters)
-  console.log("Skills-->",keySkillsFilters)
-  console.log("jobType-->",jobTypeFilters)
-  console.log("availability-->",availabilityFilters)
-  console.log("range-->",minMaxRange)
+  let finalFilters = [];
+  let defaultResults = 0;
 
-  let filterStatusCount = 0;
-  if(searchFilters.length > 0){
-    filterStatusCount = filterStatusCount + 1;
-  }
-  if(keySkillsFilters.length > 0){
-    filterStatusCount = filterStatusCount + 1;
-  }
-  if(availabilityFilters.length > 0){
-    filterStatusCount = filterStatusCount + 1;
-  }
-  if(jobTypeFilters.length > 0){
-    filterStatusCount = filterStatusCount + 1;
-  }
-  if(minMaxRange.length > 0){
-    filterStatusCount = filterStatusCount + 1;
-  }
+  //Find only the duplicate id's in order to display the results(duplicates are the actual matches found)
+  if(searchFilters.length > 0 || keySkillsFilters.length > 0 || availabilityFilters.length > 0 || jobTypeFilters.length > 0 || minMaxRange.length > 0){
+    let globalFilters = [];
+    globalFilters.push(searchFilters);
+    globalFilters.push(keySkillsFilters);
+    globalFilters.push(availabilityFilters);
+    globalFilters.push(jobTypeFilters);
+    globalFilters.push(minMaxRange);
 
-  let finalFilters = [...keySkillsFilters, ...availabilityFilters, ...jobTypeFilters, ...minMaxRange];
+    let availableFilters = globalFilters.filter(val => val.length > 0);
+    let exceptFirstFilter = availableFilters.slice(1);
 
-  if(searchFilters.length > 0){
-    finalFilters = [...finalFilters, ...searchFilters]
-  }
-
-  console.log("Before duplicates-->",finalFilters)
-  
-  let duplicates = 0;
-  for ( var i = 0; i < finalFilters.length; i++){
-    for (var j = i+1; j< finalFilters.length; j++){
-      if (finalFilters[i] === finalFilters[j]){
-        duplicates = 1;
-      }
-    }
-  }
-
-  let noDatasFound = 0;
-  if( (duplicates === 0 && filterStatusCount > 1)){
-    noDatasFound = 1
+    finalFilters =  availableFilters[0].filter(value1 => {
+      return exceptFirstFilter.every(value2 => {
+        return value2.includes(value1);
+      })
+    });
+  }else{
+    defaultResults = 1;
   }
   
-  let resultDuplicates;
-  if(keySkillsFilters.length > 0 && availabilityFilters.length > 0 && minMaxRange.length > 0){
-    resultDuplicates = keySkillsFilters.filter(value => availabilityFilters.includes(value) && minMaxRange.includes(value));
-
-    if(resultDuplicates.length === 0){
-      noDatasFound = 1
-    }
-  }
-  if(keySkillsFilters.length > 0 && availabilityFilters.length > 0 && searchFilters.length > 0){
-    resultDuplicates = searchFilters.filter(value => availabilityFilters.includes(value) && keySkillsFilters.includes(value));
-
-    if(resultDuplicates.length === 0){
-      noDatasFound = 1
-    }
-  }
-
-  if(minMaxRange.length > 0 && availabilityFilters.length > 0 && searchFilters.length > 0){
-    resultDuplicates = searchFilters.filter(value => availabilityFilters.includes(value) && minMaxRange.includes(value));
-
-    if(resultDuplicates.length === 0){
-      noDatasFound = 1
-    }
-  }
-
-  if(keySkillsFilters.length > 0 && minMaxRange.length > 0 && availabilityFilters.length > 0 && searchFilters.length > 0){
-    resultDuplicates = searchFilters.filter(value => availabilityFilters.includes(value) && minMaxRange.includes(value) && keySkillsFilters.includes(value));
-    if(resultDuplicates.length === 0){
-      noDatasFound = 1
-    }
-  }
-
-  //console.log("Filter Status Count-->",filterStatusCount)
-  if(duplicates === 1 && filterStatusCount > 1){
-    //Find duplicate values in an array
-    if(filterStatusCount === 2){
-      let duplicateFilters = [];
-      finalFilters.forEach(function(element, index) {
-          // Find if there is a duplicate or not
-          if (finalFilters.indexOf(element, index + 1) > -1) {
-            // Find if the element is already in the result array or not
-            if (duplicateFilters.indexOf(element) === -1) {
-              duplicateFilters.push(element);
-            }
-          }
-      });
-
-        finalFilters = duplicateFilters;
-    }
-
-    if(filterStatusCount > 2){
-      let sortedArr = [];
-      sortedArr = finalFilters.sort(function(a, b) {
-        return a - b
-      });
-      
-      //create Obj with duplicates count
-      var  objWithDuplicates = {};
-      sortedArr.forEach(function(i) { objWithDuplicates[i] = (objWithDuplicates[i]||0) + 1;});
-
-      let filteredId = Object.keys(objWithDuplicates).reduce((a, b) => objWithDuplicates[a] > objWithDuplicates[b] ? a : b);
-      //Find Max count of identical values which is a key of the above object
-      filteredId = Number(filteredId);
-
-      finalFilters = [];
-
-      //Get the corresponding value of the above key(filteredId)
-      let matchValue;
-      for(let i in objWithDuplicates){
-        if(Number(i) === filteredId){
-          matchValue = objWithDuplicates[i]
-        }
-      }
-
-      //Get the corresponding key of the above value(filteredId)
-      for(let j in objWithDuplicates){
-        if(matchValue === objWithDuplicates[j]){
-          finalFilters.push(Number(j))
-        }
-      }
-    }
-  
-  }
-
-  console.log("Final ids-->",finalFilters)
-
   let finalJobList = jobList;
-  if(finalFilters.length > 0){
+  let noMatches = 0;
+  if(finalFilters.length > 0){ //loop the matched id's with the Json data and fetch the matches)
     finalJobList = jobList.filter(jobs => finalFilters.some(finalVal => jobs.id === finalVal))
+  }else{
+    if(defaultResults === 1){
+      noMatches = 0; //Show default results
+    }else{
+      noMatches = 1; //No matches found
+    }
   }
-  
-
+  //Sort by
   if(sortBy){
     if(sortBy === 'lowtohigh')
       finalJobList = finalJobList.sort(function(a, b){return a.salarymin - b.salarymin});
     if(sortBy === 'hightolow')
       finalJobList = finalJobList.sort(function(a, b){return b.salarymin - a.salarymin});
+    if(sortBy === 'relevance')
+      finalJobList = finalJobList.sort(function(a, b){return a.id - b.id});
   }
   
-  if(noDatasFound === 1){
+  //No matches found hence make final result as empty
+  if(noMatches === 1){
     finalJobList = [];
   }
   

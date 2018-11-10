@@ -8,8 +8,8 @@ import SearchInput from "./components/main/searchInput.jsx";
 import filterJobs from "./components/main/filterJobs.jsx";
 import jobList from './resources/jobs.json';
 
-import './App.css';
-import { Layout,Row,Col,Pagination } from 'antd';
+import './App.scss';
+import { Layout, Row, Col } from 'antd';
 
 
 class App extends Component {
@@ -53,9 +53,6 @@ class App extends Component {
           }
         })
       } 
-      
-    // if(keywordFilters.length === 0 && searchKeyword !== '')
-    //   keywordFilters = -1;
     
     this.setState({
       filteredResults: filterJobs(keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
@@ -76,7 +73,6 @@ class App extends Component {
       if(newSkillsFilters.length > 0){
         newSkillsFilters = [];
       }
-      console.log("NewSkillsFilters before--->",newSkillsFilters)
       if(selectedSkills.length > 0){
         jobList.forEach((jobs) => {
           for(let i = 0; i < selectedSkills.length; i++){
@@ -87,7 +83,6 @@ class App extends Component {
           }
         })
       }
-      console.log("NewSkillsFilters after--->",newSkillsFilters)
     this.setState({
       filteredResults: filterJobs(this.state.keywordFilters, newSkillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
       skillsFilters: newSkillsFilters
@@ -95,7 +90,6 @@ class App extends Component {
   }
 
   handleAvailabilityFilter = availability => {
-    console.log("Availability clear filter--->", availability)
     let newAvailabilityFilters = [...this.state.availabilityFilters];
     
     if(newAvailabilityFilters.length > 0){
@@ -119,7 +113,6 @@ class App extends Component {
 }
 
 handleOnChangeRangeFilter = rangevalues => {
-  console.log('range triggered', rangevalues)
   let newRangeFilters = [...this.state.rangeFilters];
   
   if(newRangeFilters.length > 0){
@@ -128,7 +121,7 @@ handleOnChangeRangeFilter = rangevalues => {
   if(rangevalues.length > 0){
     jobList.forEach((jobs) => {
       for(let i = 0; i < rangevalues.length; i++){
-          if(jobs.salarymin > rangevalues[0] && jobs.salarymax < rangevalues[1]){
+          if(jobs.salarymin > rangevalues[0] && jobs.salarymin < rangevalues[1]){
             newRangeFilters.push(jobs.id)
           }
       }

@@ -4,7 +4,7 @@ import { Slider, InputNumber, Row, Col } from 'antd';
 export default class SliderComponent extends Component {
   state = {
     inputOneValue: 1,
-    inputTwoValue: 40
+    inputTwoValue: 50
   }
 
   onChange = (value) => {
@@ -52,7 +52,7 @@ export default class SliderComponent extends Component {
   handleResetSlider = () => {
       this.setState({
       inputOneValue: 1,
-      inputTwoValue: 40
+      inputTwoValue: 50
     });
     this.props.rangeEvent([]);
   }
@@ -73,7 +73,7 @@ export default class SliderComponent extends Component {
     const { inputOneValue,inputTwoValue } = this.state;
     const marks = {
       1: '1',
-      40: '40+',
+      50: '50',
     };
     return (
       <div className="container">
@@ -82,7 +82,7 @@ export default class SliderComponent extends Component {
         <Col span={6}>
           <InputNumber
             min={1}
-            max={40}
+            max={50}
             defaultValue={1}
             style={{ marginRight: 16 }}
             value={inputOneValue}
@@ -92,7 +92,7 @@ export default class SliderComponent extends Component {
         <Col span={6}>
           <InputNumber
             min={1}
-            max={40}
+            max={50}
             style={{ marginLeft: 16 }}
             value={inputTwoValue}
             onChange={this.onInputAfterChange}
@@ -104,7 +104,7 @@ export default class SliderComponent extends Component {
           <Slider
             range={100}
             min={1}
-            max={40}
+            max={50}
             value={[inputOneValue,inputTwoValue]}
             marks={marks}
             onChange={this.onChange}

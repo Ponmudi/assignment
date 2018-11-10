@@ -35,7 +35,6 @@ export default class Availability extends Component {
           }
         }
       }
-      //console.log("newchecked avail--->",newcheckedAvail)
       this.setState({checkedAvail: newcheckedAvail})
       this.props.availabilityEvent(finalAvail)
   }
@@ -70,9 +69,9 @@ export default class Availability extends Component {
           <span className="clearFilter" onClick={this.handleResetAvailability}>Clear</span>
         </p>
         <div className="workType">
-        <div><Checkbox name="hourly"  disabled className='availability_box'  onChange={this.handleOnChange}>Hourly</Checkbox></div>
-		    <div><Checkbox name="fulltime" className='availability_box' checked={this.state.checkedItems.get("fulltime")} onChange={this.handleOnChange}>Full-Time(40hrs/wk)</Checkbox></div>
-        <div><Checkbox name="parttime" className='availability_box' checked={this.state.checkedItems.get("parttime")} onChange={this.handleOnChange}>Part-Time(20hrs/wk)</Checkbox></div>
+        <div><Checkbox name="hourly"  disabled  onChange={this.handleOnChange}>Hourly</Checkbox></div>
+		    <div><Checkbox name="fulltime" checked={this.state.checkedItems.get("fulltime")} onChange={this.handleOnChange}>Full-Time(40hrs/wk)</Checkbox></div>
+        <div><Checkbox name="parttime" checked={this.state.checkedItems.get("parttime")} onChange={this.handleOnChange}>Part-Time(20hrs/wk)</Checkbox></div>
         </div>
       </div>
     );

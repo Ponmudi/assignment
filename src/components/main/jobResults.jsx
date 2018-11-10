@@ -67,7 +67,7 @@ class JobResults extends Component {
           size="large"
           pagination={{
             onChange: (page) => {
-              console.log(page);
+              //console.log(page);
             },
             pageSize: 5,
           }}
@@ -75,7 +75,7 @@ class JobResults extends Component {
           renderItem={item => (
             <List.Item
               key={item.title}
-              extra={<b>${Math.round((item.salarymin/160))}/hr</b>}
+              extra={<span>${Math.round(item.salarymin/160)}/hr</span>}
             >
               <List.Item.Meta
                 title={item.title}

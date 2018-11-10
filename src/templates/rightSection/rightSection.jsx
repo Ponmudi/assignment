@@ -5,8 +5,8 @@ const rightSection = () => {
 	return(
 		<Layout>
 			<div className="rightBlock">
-			<div className='rightAdBlockOne'>
-				<img src="images/ad-logo.jpg" alt="Hubstaff Talent" className="logo" />
+			<div className="rightAdBlockOne">
+				<img src="images/track-time-logo.jpg" alt="Track time" className="logo" />
 				<h2>Track time on Hubstaff</h2>
 				<Button type="primary" >Sign Up</Button>
 				<a href="/" >Learn More </a>
