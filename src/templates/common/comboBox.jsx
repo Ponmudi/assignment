@@ -10,33 +10,39 @@ export default class ComboBox extends Component{
 			this.props.jobTypeEvent(value)
 		if(this.props.title === 'Skills')
 			this.props.skillsEvent(value)
-		if(this.props.title === 'Experience')
-			this.props.experienceEvent(value)
+		if(this.props.title === 'Location')
+			this.props.locationEvent(value)
 	}
 	renderOptions= (optionVal)=> {
 	    return optionVal.map((val,key) => (
 	      <Option key={key} value={val}>{val}</Option>
 	    ));
-  	}
+	}
+	
+	handleAllComboBoxReset(e){
+		var clearAllCombo=document.querySelectorAll('.ant-select-selection__clear');
+		for(let i=0;i<clearAllCombo.length;i++){
+			clearAllCombo[i].click()
+		}
+	}
 	
 	handleComboBoxReset = (e) => {
-		const comboClear=document.querySelectorAll('.ant-select-selection__clear');
-		for(let i=0;i<comboClear.length;i++){
-			comboClear[i].click()
-		}
-		if(this.props.title === 'Skills')
-			this.props.skillsEvent([])
-		if(this.props.title === 'Job type')
-			this.props.jobTypeEvent([])
+		const targetFilter= e.target.id;
+  		const parentClass ="."+targetFilter;
+  		const elem=document.querySelectorAll(parentClass+' .ant-select-selection__clear')
+		elem[0].click();
 	}
 
 	render(){
 		const {mode, title, optionProps, placeholderProps}=this.props;
+
+		const containerClass = title === "Job type"? 'jobType' : title;
+
 		return(
-		<div className="container">
+		<div className={`${containerClass} container`}>
 			<p>
 				<b>{title + " "}{title === "Job type"?<Tooltip title={title}><Icon type="info-circle" style={{ fontSize: '18px' }} theme="outlined" /> </Tooltip> : ""}</b>
-				<span className="clearFilter" id={title} onClick={this.handleComboBoxReset}>Clear</span>
+				<span className="clearFilter" id={containerClass} onClick={this.handleComboBoxReset}>Clear</span>
 			</p>
 			
 				{mode === "multiple"?

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-//import JobResultRow from "./jobResultRow.jsx";
 import { Select } from 'antd';
 import { List, Icon } from 'antd';
 
@@ -15,28 +14,6 @@ const IconText = ({ type, text }) => (
 
 
 class JobResults extends Component {
-
-  finalstyles() {
-    const staticJobTypes = ["Full Time", "Part Time", "Hourly"];
-    const chooseStyles = staticJobTypes.filter(
-      style => style === this.props.jobType
-    );
-    let finalStyles = "availability ";
-    switch (chooseStyles[0]) {
-      case "Full Time":
-        finalStyles += "blue";
-        break;
-      case "Part Time":
-        finalStyles += "green";
-        break;
-      case "Hourly":
-        finalStyles += "orange";
-        break;
-      default:
-        finalStyles += "blue";
-    }
-    return finalStyles;
-  }
 
   handleChange = (value) => {
     this.props.sortBy(value)
@@ -62,6 +39,7 @@ class JobResults extends Component {
           }
           
         </div>
+        {this.props.jobData.length > 0 ?
         <List
           itemLayout="vertical"
           size="large"
@@ -79,7 +57,7 @@ class JobResults extends Component {
             >
               <List.Item.Meta
                 title={item.title}
-                description={<span className={this.finalstyles()}>{item.jobType}</span>}
+                description={<span className={item.jobType === 'Part Time'?'availability green':'availability blue'}>{item.jobType}</span>}
               />
               <div className="location">
               {[<IconText key={Math.random()} type="environment" theme="twoTone" text={item.location} twoToneColor="#56d48f" />]}
@@ -95,8 +73,7 @@ class JobResults extends Component {
               </ul>
             </List.Item>
           )}
-        />
-
+        /> : <div /> }
       </div>
     );
   }

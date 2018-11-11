@@ -106,9 +106,15 @@ body{
 	}
 	.ant-select-selection--single {
 		height: 42px;
+		.ant-select-selection-selected-value{
+			padding-top: 5px;
+		}
 	}
 	.ant-select-selection--multiple {
 		min-height: 42px;
+		.ant-select-selection__rendered > ul > li{
+			margin-top: 9px;
+		}
 	}
 	.ant-select-selection__placeholder {
 		margin-top: -5px;
@@ -129,6 +135,11 @@ body{
 					border-color: #56d48f;
 				}
 			}
+		}
+		.ant-slider-mark-text{
+			font-weight: 500;
+			font-size: 16px;
+			font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		}
 	}
 	.ant-input-number {
@@ -151,7 +162,10 @@ body{
     float: right;
     cursor: pointer;
     color: #79899d;
-  }
+	}
+	.withoutPayRates{
+		margin-top: 5px;
+	}
 }
 .container{
   margin-bottom:10%;
@@ -227,6 +241,8 @@ body{
 		margin: 30px 30px 0px;
 		.noResults {
 			text-align: center;
+			padding-bottom: 50px;
+			padding-top: 25px;
 		}
 	}
 	.countResults {
@@ -342,8 +358,8 @@ body{
   margin-top: 25px;
   .ant-pagination {
     .ant-pagination-item-link {
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       position: absolute;
       border-radius: 50%;
     }
@@ -361,6 +377,9 @@ body{
 	.ant-pagination-item {
 		border: none;
 		background: none;
+		min-width: 26px;
+		height: 26px;
+		line-height: 26px;
 		&:focus {
 			a {
 				color: #79899d;
@@ -409,16 +428,16 @@ body{
 	i.anticon.anticon-left {
 		&:after {
 			content: "\f060";
-			top: 18px;
-			left: 11px;
+			top: 16px;
+			left: 10px;
 			position: absolute;
 		}
 	}
 	i.anticon.anticon-right {
 		&:after {
 			content: "\f061";
-			top: 18px;
-			left: 14px;
+			top: 16px;
+			left: 11px;
 			position: absolute;
 		}
 	}
@@ -462,8 +481,11 @@ body{
   }
   .rightContainer {
     padding-left: 0;
-    margin-top: 30px;
-  }
+    margin-top: 75px;
+	}
+	.mainContainer{
+		margin: 0 5%;
+	}
   .ant-row {
     .footerNav {
       text-align: center;

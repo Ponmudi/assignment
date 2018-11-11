@@ -1,22 +1,25 @@
 import jobList from '../../resources/jobs.json';
 
-export default function filterJobs(keywordFilters, skillsFilters, checkedValueFilters, jobType, range, sortBy) {
+export default function filterJobs(keywordFilters, skillsFilters, checkedValueFilters, jobType, range, location, sortBy) {
   let searchFilters = keywordFilters || [];
   let keySkillsFilters = skillsFilters || [];
   let availabilityFilters = checkedValueFilters || [];
   let jobTypeFilters = jobType || [];
   let minMaxRange = range || [];
+  let locationFilters = location || [];
+
   let finalFilters = [];
   let defaultResults = 0;
 
   //Find only the duplicate id's in order to display the results(duplicates are the actual matches found)
-  if(searchFilters.length > 0 || keySkillsFilters.length > 0 || availabilityFilters.length > 0 || jobTypeFilters.length > 0 || minMaxRange.length > 0){
+  if(searchFilters.length > 0 || keySkillsFilters.length > 0 || availabilityFilters.length > 0 || jobTypeFilters.length > 0 || minMaxRange.length > 0 || locationFilters.length > 0){
     let globalFilters = [];
     globalFilters.push(searchFilters);
     globalFilters.push(keySkillsFilters);
     globalFilters.push(availabilityFilters);
     globalFilters.push(jobTypeFilters);
     globalFilters.push(minMaxRange);
+    globalFilters.push(locationFilters);
 
     let availableFilters = globalFilters.filter(val => val.length > 0);
     let exceptFirstFilter = availableFilters.slice(1);

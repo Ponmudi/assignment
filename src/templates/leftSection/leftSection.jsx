@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout,Divider,Input } from 'antd';
+import { Layout,Divider } from 'antd';
 import Availability from './availabilityComponent.jsx';
 import ComboBox from '../common/comboBox.jsx';
 import SliderComponent from './sliderComponent.jsx';
@@ -20,7 +20,7 @@ export default class LeftSection extends Component{
 	}
 
 	clearAllFilters = () => {
-		this.clearAllCombo.handleComboBoxReset();
+		this.clearAllCombo.handleAllComboBoxReset();
 		this.clearAllAvailability.handleResetAvailability();
 		this.clearAllSlider.handleResetSlider();
 		this.props.clearAllFilters();
@@ -31,6 +31,7 @@ export default class LeftSection extends Component{
 		const skillsProps = ["npm","react","webpack","html","js","css","java", "spring", "kafka", "nginx", "scala", "hadoop", "spark", "oracle", "mysql"];
 		const experienceProps=[];
 		const languageProps=['English','Spanish','France','Chinese','Korean']
+		const locationProps=['California','Chennai','Dallas'];
 
 		return(
 			<Layout>
@@ -41,10 +42,7 @@ export default class LeftSection extends Component{
 				<ComboBox jobTypeEvent={this.props.jobTypeFilter} mode="multiple" optionProps={jobtypeProps} title="Job type" placeholderProps="Select a job type" ref={this.setClearAllComboRef}  />
 				<SliderComponent rangeEvent={this.props.rangeFilter} ref={this.setClearAllSlider}/>
 				<ComboBox experienceEvent={this.props.experienceFilter} mode="multiple" optionProps={experienceProps} title="Experience" placeholderProps="Select your experience level" />
-				<div className="container">
-					<p><b>Countries</b> <span className="clearFilter">Clear</span></p>
-					<Input placeholder="Enter State, Province or country" />
-				</div>
+				<ComboBox locationEvent={this.props.locationFilter} mode="multiple" optionProps={locationProps} title="Location" placeholderProps="Select your location" />
 				<ComboBox mode="default" optionProps={languageProps} title="Languages" placeholderProps="Select your language" />
 			</Layout>
 		);

@@ -22,7 +22,8 @@ class App extends Component {
       keywordFilters: [],
       jobTypeFilters: [],
       availabilityFilters: [],
-      rangeFilters: []
+      rangeFilters: [],
+      locationFilters: []
     };
   }
 
@@ -52,17 +53,21 @@ class App extends Component {
             }
           }
         })
+        //if user's selected option doesn't match with json data
+        if(keywordFilters.length === 0){
+          keywordFilters.push(0)
+        }
       } 
     
     this.setState({
-      filteredResults: filterJobs(keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
+      filteredResults: filterJobs(keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.locationFilters, this.state.sortBy),
       keywordFilters: keywordFilters
     });
   };
 
   handleSortBy = selectedSortBy => {
     this.setState({
-      filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, selectedSortBy),
+      filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.locationFilters, selectedSortBy),
       sortBy: selectedSortBy
     });
   }
@@ -84,14 +89,13 @@ class App extends Component {
         })
       }
     this.setState({
-      filteredResults: filterJobs(this.state.keywordFilters, newSkillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
+      filteredResults: filterJobs(this.state.keywordFilters, newSkillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.locationFilters, this.state.sortBy),
       skillsFilters: newSkillsFilters
     });
   }
 
   handleAvailabilityFilter = availability => {
     let newAvailabilityFilters = [...this.state.availabilityFilters];
-    
     if(newAvailabilityFilters.length > 0){
       newAvailabilityFilters = [];
     }
@@ -104,10 +108,14 @@ class App extends Component {
           }
         }
       })
+      //if user's selected option doesn't match with json data
+      if(newAvailabilityFilters.length === 0){
+        newAvailabilityFilters.push(0)
+      }
     }
     
   this.setState({
-    filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, newAvailabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.sortBy),
+    filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, newAvailabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, this.state.locationFilters, this.state.sortBy),
     availabilityFilters: newAvailabilityFilters
   });
 }
@@ -133,7 +141,7 @@ handleOnChangeRangeFilter = rangevalues => {
   }
   
   this.setState({
-    filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, newRangeFilters, this.state.sortBy),
+    filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, newRangeFilters, this.state.locationFilters, this.state.sortBy),
     rangeFilters: newRangeFilters
   });
 }
@@ -154,10 +162,31 @@ handleOnChangeRangeFilter = rangevalues => {
         })
       }
     this.setState({
-      filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, newJobTypeFilters, this.state.rangeFilters, this.state.sortBy),
+      filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, newJobTypeFilters, this.state.rangeFilters, this.state.locationFilters, this.state.sortBy),
       jobTypeFilters: newJobTypeFilters
     });
   }
+
+  handleLocationFilter = selectedLocation => {
+    let newLocationFilters = [...this.state.locationFilters];
+
+    if(newLocationFilters.length > 0){
+      newLocationFilters = [];
+    }
+    if(selectedLocation){
+      jobList.forEach((jobs) => {
+        for(let i = 0; i < selectedLocation.length; i++){
+          if(jobs.location.includes(selectedLocation[i])){
+            newLocationFilters.push(jobs.id)
+          }
+        }
+      })
+    }
+    this.setState({
+      filteredResults: filterJobs(this.state.keywordFilters, this.state.skillsFilters, this.state.availabilityFilters, this.state.jobTypeFilters, this.state.rangeFilters, newLocationFilters, this.state.sortBy),
+      locationFilters: newLocationFilters
+    });
+}
 
   render() {
     return (
@@ -172,7 +201,8 @@ handleOnChangeRangeFilter = rangevalues => {
                 jobTypeFilter={this.handleJobTypeFilter} 
                 experienceFilter={this.handleExperienceFilter} 
                 availabilityFilter={this.handleAvailabilityFilter} 
-                rangeFilter={this.handleOnChangeRangeFilter} 
+                rangeFilter={this.handleOnChangeRangeFilter}
+                locationFilter={this.handleLocationFilter}
                 clearAllFilters={this.handleClearAll}
               />
             </Col>

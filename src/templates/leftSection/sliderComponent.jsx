@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Slider, InputNumber, Row, Col } from 'antd';
+import { Slider, InputNumber, Row, Col, Checkbox } from 'antd';
 
 export default class SliderComponent extends Component {
   state = {
     inputOneValue: 1,
     inputTwoValue: 50
+  }
+  
+  handleOnCheckBoxChange = (e) => {
+    console.log(`checked = ${e.target.checked}`);
   }
 
   onChange = (value) => {
@@ -12,18 +16,14 @@ export default class SliderComponent extends Component {
       inputOneValue: value[0],
       inputTwoValue: value[1]
     });
-    //console.log("onChange--"+value);
     this.updateRangevalues(value[0],value[1]);
-    //this.props.rangeEvent([value[0],value[1]]);
   }
   onAfterChange = (value) => {
     this.setState({
       inputOneValue: value[0],
       inputTwoValue: value[1]
     });
-    //console.log("onAfterChange--"+value);
     this.updateRangevalues(value[0],value[1]);
-    //this.props.rangeEvent([value[0],value[1]]);
   }
 
   onInputChange = (value) => {
@@ -33,7 +33,6 @@ export default class SliderComponent extends Component {
       inputOneValue: value
     });
     this.updateRangevalues(value,this.state.inputTwoValue);
-    //this.props.rangeEvent([value,this.state.inputTwoValue]);
     }
     
 
@@ -45,7 +44,6 @@ export default class SliderComponent extends Component {
         inputTwoValue: value
       });
       this.updateRangevalues(this.state.inputOneValue,value);
-      //this.props.rangeEvent([this.state.inputOneValue, value]);
     }
   }
 
@@ -59,12 +57,12 @@ export default class SliderComponent extends Component {
 
   updateRangevalues(min,max){
     const finalRange = [];
-    console.log(min, max);
+    //console.log(min, max);
     min = (min*40*4);
     max = (max*40*4);
     finalRange.push(min);
     finalRange.push(max);
-    console.log(finalRange);
+    //console.log(finalRange);
     this.props.rangeEvent(finalRange);
   }
 
@@ -112,6 +110,7 @@ export default class SliderComponent extends Component {
           />
         </Col>
         </Row>
+        <div className="withoutPayRates"><Checkbox name="payrates" onChange={this.handleOnCheckBoxChange}>Include profiles without pay rates</Checkbox></div>
       </div>
     );
   }
