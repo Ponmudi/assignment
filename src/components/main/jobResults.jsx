@@ -47,7 +47,7 @@ class JobResults extends Component {
             onChange: (page) => {
               //console.log(page);
             },
-            pageSize: 5,
+            pageSize: 4,
           }}
           dataSource={this.props.jobData}
           renderItem={item => (
