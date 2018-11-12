@@ -6,8 +6,8 @@ export default class HeaderSection extends Component{
 	render(){
 		return(
 			<Header>
-				<img src="images/company-logo-header.jpg" alt="Hubstaff Talent" className="logo" />
-				<HeaderNav />
+				<div className="headerLogo"><img src="images/company-logo-header.jpg" alt="Hubstaff Talent" className="logo" /></div>
+				<div className="menus"><HeaderNav /></div>
 			</Header>
 		);
 	}
