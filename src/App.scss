@@ -150,15 +150,6 @@ body{
 		display: block;
 		margin-bottom: 12px;
 	}
-	.ant-col-6 {
-		&:last-child {
-			&::before {
-				content: '-';
-				position: absolute;
-				margin-top: 3px;
-			}
-		}
-  }
   .clearFilter{
     float: right;
     cursor: pointer;
