@@ -8,7 +8,7 @@ export default class SliderComponent extends Component {
   }
   
   handleOnCheckBoxChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    //console.log(`checked = ${e.target.checked}`);
   }
 
   onChange = (value) => {
@@ -27,18 +27,14 @@ export default class SliderComponent extends Component {
   }
 
   onInputChange = (value) => {
-    console.log("onInputChange--"+value);
     if(value!==''){
     this.setState({
       inputOneValue: value
     });
     this.updateRangevalues(value,this.state.inputTwoValue);
     }
-    
-
   }
   onInputAfterChange = (value) => {
-    console.log("onInputAfterChange--"+value);
     if(value!==''){
       this.setState({
         inputTwoValue: value
@@ -46,7 +42,6 @@ export default class SliderComponent extends Component {
       this.updateRangevalues(this.state.inputOneValue,value);
     }
   }
-
   handleResetSlider = () => {
       this.setState({
       inputOneValue: 1,
@@ -57,12 +52,10 @@ export default class SliderComponent extends Component {
 
   updateRangevalues(min,max){
     const finalRange = [];
-    //console.log(min, max);
     min = (min*40*4);
     max = (max*40*4);
     finalRange.push(min);
     finalRange.push(max);
-    //console.log(finalRange);
     this.props.rangeEvent(finalRange);
   }
 

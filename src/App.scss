@@ -11,7 +11,7 @@ body{
   -webkit-box-shadow: 0 2px 4px rgba(0,0,1,0.2);
 }
 .ant-layout-header img.logo,.ant-layout-footer img.logo{
-  margin: 1% 12%;
+  margin: 1% 10%;
   float: left;
   padding-top: 5px;
 }
@@ -20,7 +20,7 @@ body{
 } 
 .headerNav{
   float:right;
-  margin-right: 12%;
+  margin-right: 10%;
 }
 .ant-layout-header .ant-menu-horizontal{
   border-bottom: 0;
@@ -204,7 +204,7 @@ body{
 			font-size: 12px;
 		}
 	}
-	.rightAdBlockList {
+	.rightSectionList {
 		margin-bottom: 20px;
 		margin-top: 20px;
 		clear: both;
@@ -221,8 +221,8 @@ body{
 }
 
 .mainContainer{
-  margin-left: 12%;
-  margin-right: 12%;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-top: 2%;
 }
 
@@ -440,8 +440,8 @@ body{
 	background: #324258;
 	color: #fff;
 	margin-top: 75px;
-	padding-left: 12%;
-	padding-right: 12%;
+	padding-left: 10%;
+	padding-right: 10%;
 	.footerNav {
 		text-align: left;
 		ul {

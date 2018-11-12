@@ -122,21 +122,26 @@ class App extends Component {
 
 handleOnChangeRangeFilter = rangevalues => {
   let newRangeFilters = [...this.state.rangeFilters];
-  
+
   if(newRangeFilters.length > 0){
     newRangeFilters = [];
   }
   if(rangevalues.length > 0){
     jobList.forEach((jobs) => {
       for(let i = 0; i < rangevalues.length; i++){
-          if(jobs.salarymin > rangevalues[0] && jobs.salarymin < rangevalues[1]){
+          if(jobs.salarymin > rangevalues[0] && jobs.salarymax < rangevalues[1]){
             newRangeFilters.push(jobs.id)
           }
       }
     })
+ 
     newRangeFilters = newRangeFilters.reduce(function(acc, el, i, arr) {
       if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
     }, []);
+
+    if(newRangeFilters.length === 0){
+      newRangeFilters.push(0)
+    }
 
   }
   

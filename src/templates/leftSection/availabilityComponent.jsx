@@ -17,6 +17,7 @@ export default class Availability extends Component {
       let newcheckedAvail = [...this.state.checkedAvail];
       let ftime = "Full Time";
       let ptime = "Part Time";
+      let htime = "Hourly";
       if(isChecked) {
 				this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
         newcheckedAvail.push(item)
@@ -35,7 +36,7 @@ export default class Availability extends Component {
             finalAvail.push(ptime)
           }
           if(newcheckedAvail[i] === 'hourly'){
-            finalAvail.push("Hourly")
+            finalAvail.push(htime)
           }
         }
       }

@@ -1,15 +1,17 @@
 import jobList from '../../resources/jobs.json';
 
-export default function filterJobs(keywordFilters, skillsFilters, checkedValueFilters, jobType, range, location, sortBy) {
-  let searchFilters = keywordFilters || [];
-  let keySkillsFilters = skillsFilters || [];
-  let availabilityFilters = checkedValueFilters || [];
-  let jobTypeFilters = jobType || [];
-  let minMaxRange = range || [];
-  let locationFilters = location || [];
+export default function filterJobs(...args) {
+  
+  let searchFilters = args[0] || [];
+  let keySkillsFilters = args[1] || [];
+  let availabilityFilters = args[2] || [];
+  let jobTypeFilters = args[3] || [];
+  let minMaxRange = args[4] || [];
+  let locationFilters = args[5] || [];
+  let sortBy = args[6] || '';
 
   let finalFilters = [];
-  let defaultResults = 0;
+  let defaultResults = 0
 
   //Find only the duplicate id's in order to display the results(duplicates are the actual matches found)
   if(searchFilters.length > 0 || keySkillsFilters.length > 0 || availabilityFilters.length > 0 || jobTypeFilters.length > 0 || minMaxRange.length > 0 || locationFilters.length > 0){

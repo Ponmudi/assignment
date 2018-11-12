@@ -4,14 +4,14 @@ import { Layout,Divider,Button } from 'antd';
 const rightSection = () => {
 	return(
 		<Layout>
-			<div className="rightBlock">
+			<div className="rightSection">
 			<div className="rightAdBlockOne">
 				<img src="images/track-time-logo.jpg" alt="Track time" className="logo" />
 				<h2>Track time on Hubstaff</h2>
 				<Button type="primary" >Sign Up</Button>
 				<a href="/" >Learn More </a>
 			</div>
-			<div className='rightAdBlockList'>
+			<div className="rightSectionList">
 				<p><b>TOP JOBS</b> </p>
 				<Divider />
 				<div className="ad-container">
@@ -33,7 +33,7 @@ const rightSection = () => {
 				</div>
 				</div>
 			</div>
-			<div className='rightAdBlockList'>
+			<div className="rightSectionList">
 				<p><b>MOST VIEWED THIS WEEK</b> </p>
 				<Divider />
 				<div className="ad-container">

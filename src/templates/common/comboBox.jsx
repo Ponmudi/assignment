@@ -29,8 +29,8 @@ export default class ComboBox extends Component{
 	handleComboBoxReset = (e) => {
 		const targetFilter= e.target.id;
   		const parentClass ="."+targetFilter;
-  		const elem=document.querySelectorAll(parentClass+' .ant-select-selection__clear')
-		elem[0].click();
+  		const elem=document.querySelector(parentClass+' .ant-select-selection__clear')
+		elem.click();
 	}
 
 	render(){
