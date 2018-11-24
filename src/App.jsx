@@ -11,7 +11,6 @@ import jobList from './resources/jobs.json';
 import './App.scss';
 import { Layout, Row, Col } from 'antd';
 
-
 class App extends Component {
   constructor(props) {
     super(props);

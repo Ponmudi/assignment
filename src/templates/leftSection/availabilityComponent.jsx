@@ -18,11 +18,12 @@ export default class Availability extends Component {
       let ftime = "Full Time";
       let ptime = "Part Time";
       let htime = "Hourly";
+      this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
       if(isChecked) {
-				this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+				
         newcheckedAvail.push(item)
       }else if(!isChecked) {
-        this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+        //this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
         newcheckedAvail = newcheckedAvail.filter(val => val !== item)
       }
 
@@ -58,6 +59,8 @@ export default class Availability extends Component {
 
 
   render() {
+    console.log("Map-->",this.state.checkedItems);
+    console.log("availability-->",this.state.checkedAvail);
     return (
       <div className="container">
         <p>

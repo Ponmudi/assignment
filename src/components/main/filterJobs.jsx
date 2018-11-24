@@ -34,11 +34,14 @@ export default function filterJobs(...args) {
   }else{
     defaultResults = 1;
   }
+
+  console.log(finalFilters)
   
   let finalJobList = jobList;
   let noMatches = 0;
   if(finalFilters.length > 0){ //loop the matched id's with the Json data and fetch the matches)
-    finalJobList = jobList.filter(jobs => finalFilters.some(finalVal => jobs.id === finalVal))
+    //finalJobList = jobList.filter(jobs => finalFilters.some(finalVal => jobs.id === finalVal))
+    finalJobList = jobList.filter(jobs => finalFilters.includes(jobs.id))
   }else{
     if(defaultResults === 1){
       noMatches = 0; //Show default results
